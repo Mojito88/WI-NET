@@ -28,3 +28,7 @@ window.onload = function () {
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
 };
+
+<body>
+    <div>Stage one ends in <span id="time">05:00</span> minutes!</div>
+</body>
