@@ -1,32 +1,38 @@
-# Python program to implement client side of chat room.
 import socket
-import select
+import threading
 import sys
 
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-if len(sys.argv) != 3:
-	print ("Correct usage: script, IP address, port number")
-	exit()
-IP_address = str(sys.argv[1])
-Port = int(sys.argv[2])
-server.connect((IP_address, Port))
+#Wait for incoming data from server
+#.decode is used to turn the message in bytes to a string
+def receive(socket, signal):
+    while signal:
+        try:
+            data = socket.recv(32)
+            print(str(data.decode("utf-8")))
+        except:
+            print("You have been disconnected from the server")
+            signal = False
+            break
 
+#Get host and port
+host = input("Host: ")
+port = int(input("Port: "))
+
+#Attempt connection to server
+try:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect((host, port))
+except:
+    print("Could not make a connection to the server")
+    input("Press enter to quit")
+    sys.exit(0)
+
+#Create new thread to wait for data
+receiveThread = threading.Thread(target = receive, args = (sock, True))
+receiveThread.start()
+
+#Send data to server
+#str.encode is used to turn the string message into bytes so it can be sent across the network
 while True:
-
-	# maintains a list of possible input streams
-	sockets_list = [sys.stdin, server]
-
-
-	read_sockets,write_socket, error_socket = select.select(sockets_list,[],[])
-
-	for socks in read_sockets:
-		if socks == server:
-			message = socks.recv(2048)
-			print (message)
-		else:
-			message = sys.stdin.readline()
-			server.send(message)
-			sys.stdout.write("<You>")
-			sys.stdout.write(message)
-			sys.stdout.flush()
-server.close()
+    message = input()
+    sock.sendall(str.encode(message))
