@@ -29,7 +29,7 @@ l.pack()
 
 def get_key():
 	key = E1.get()
-	print(key)
+	print("sending to server key: "+ key)
 	s = socket.socket()
 	port = 3125
 	s.connect(('localhost', port))
