@@ -16,5 +16,10 @@
 # 2° Phase
 - [ ] Verify key
 - [ ] Data encryption
+- [ ] Send GUI label
+- [ ] Reciving data label
+
+
+# 3° Phase
 - [ ] Distributing keys
 - [ ] Tor servers implementation
