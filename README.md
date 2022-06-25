@@ -3,4 +3,5 @@
 
 :construction: Working on, stay tuned :loudspeaker: :construction:
 
-# Bug Fixing
+- [x] Bug Fixing <br/>
+- [ ] working on GUI
