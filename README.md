@@ -16,7 +16,7 @@ WI-NET is going to be a full privacy project to connect people to talk, an open 
 
 > Why the server listener is inside the repository? first of all to avoid losing it, then, it will be there forever if someone will help me to develop it better or general hints.
 > What is the key? key aren't gonna be uploaded on github cz server will take them from local file.
-> 
+> Are gonna our key will be in a safe place? That's imposssible to say, every server can be exploited but i'll do my best to keep them hidden.
 
 :construction: Working on, stay tuned :loudspeaker: :construction:
 # 2° Phase
