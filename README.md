@@ -3,7 +3,7 @@ speak, this is your power, don't let anyone stop you from doing it!
 WI-NET is going to be a full privacy project to connect people to talk, an open source project for everyone.
 
 # Current bug not already fixed:
-> Client&server must stop sending and start listening
+> Client&server must stop sending and start listening <br/>
 > Exiting bind for not keep port busy until os close that
 
 # 1° Phase
