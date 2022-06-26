@@ -15,9 +15,9 @@ window.configure(bg='#23252e')
 window.resizable(False,False)
 
 
+
+
 #Body
-
-
 
 
 
@@ -25,16 +25,23 @@ window.resizable(False,False)
 l = Label(window, text = "Enter your key:", font = ('calibre',10,'normal'))
 l.place(relx = 0, rely = 0.5, anchor = 'center')
 l.pack()
-
+port = 3124
 
 def get_key():
-	key = E1.get()
-	print("sending to server key: "+ key)
-	s = socket.socket()
-	port = 3125
-	s.connect(('localhost', port))
-	z = key
-	s.sendall(z.encode())    
+	
+	
+		key = E1.get()
+		print("sending to server key: "+ key)
+		
+		s = socket.socket()
+		port = 3125
+		s.connect(('localhost', port))
+		s.sendall(key.encode())
+		recive()
+	
+		
+		
+	    
 	
 
 
@@ -49,7 +56,16 @@ E1 = Entry(window, bd =5, font = ('calibre',10,'normal'), show = '*')
 E1.pack(side = RIGHT)
 E1.place(x=130, y=50, in_=window)
 
-
+def recive():
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.bind(('0.0.0.0', port))
+	s.listen(3)
+	while True:
+	    c, addr = s.accept()
+	    print ('Got connection from ', addr)
+	    msg = c.recv(1024)
+	    c.close()
+	    print (msg)
 
 
 
